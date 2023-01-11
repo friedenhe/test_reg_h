@@ -35,7 +35,7 @@ daOptions = {
     "designSurfaces": ["wing"],
     "solverName": "DASimpleFoam",
     "adjEqnSolMethod": "fixedPoint",
-    "primalMinResTol": 1.0e-10,
+    "primalMinResTol": 1.0e-6,
     "primalMinResTolDiff": 1e4,
     "primalBC": {
         "U0": {"variable": "U", "patches": ["inout"], "value": [U0, 0.0, 0.0]},
@@ -68,7 +68,7 @@ daOptions = {
     },
     "adjEqnOption": {
         "fpMaxIters": 1000,
-        "fpRelTol": 1e-6,
+        "fpRelTol": 1e-1,
     },
     "designVar": {
         "shape": {"designVarType": "FFD"},
