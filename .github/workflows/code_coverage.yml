@@ -41,8 +41,8 @@ jobs:
         docker exec regtest sed -i 's/-std=c++11/-std=c++11 -coverage/g' ${{env.DOCKER_WORKING_DIR}}/src/adjoint/Make/options_Solid
         docker exec regtest sed -i 's/-lfiniteVolume$(DF_LIB_SUFFIX)/-lfiniteVolume$(DF_LIB_SUFFIX) -lgcov/g' ${{env.DOCKER_WORKING_DIR}}/src/adjoint/Make/options_Solid
         docker exec -i regtest /bin/bash -c "cd ${{env.DOCKER_WORKING_DIR}}/src && cp -r adjoint adjointAD && cp -r pyDASolvers pyDASolversAD"
-        docker exec -i regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && cd ${{env.DOCKER_WORKING_DIR}} && ./Allmake"
-        docker exec -i regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && . ${{env.DOCKER_OF_ADR_BASHRC}} && cd ${{env.DOCKER_WORKING_DIR}}/src/adjointAD && ./Allmake opt 2> errorLog.txt && cd ../pyDASolversAD && ./Allmake opt 2> errorLog.txt"
+        docker exec -i regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && cd ${{env.DOCKER_WORKING_DIR}} && ./Allmake incompressible"
+        docker exec -i regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && . ${{env.DOCKER_OF_ADR_BASHRC}} && cd ${{env.DOCKER_WORKING_DIR}}/src/adjointAD && ./Allmake incompressible 2> errorLog.txt && cd ../pyDASolversAD && ./Allmake incompressible 2> errorLog.txt"
         docker exec -i regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && cd ${{env.DOCKER_WORKING_DIR}} && pip install ."
         docker exec -i -e DF_CHECK_COVERAGE=1 regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && cd ${{env.DOCKER_WORKING_DIR}}/tests && ./Allrun ${{matrix.args}}"
         docker exec -i regtest /bin/bash -c ". ${{env.DOCKER_ENV_FILE}} && cd ${{env.DOCKER_WORKING_DIR}}/tests && coverage combine && coverage xml && echo dafoamuser | sudo -S cp -r coverage.xml ${{env.DOCKER_MOUNT_DIR}}/"
