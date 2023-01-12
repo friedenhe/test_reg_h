@@ -80,6 +80,8 @@ function runTestsSerial()
       exit 1
     fi
     echo "DF_CHECK_COVERAGE key found! Do NOT check the regression test values!"
+    ls -la 
+    mv .coverage .coverage.serial.reg.test.${1}
   else
     echo "DF_CHECK_COVERAGE key not valid! Set it to 1!"
     exit 1
