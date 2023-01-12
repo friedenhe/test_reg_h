@@ -41,12 +41,13 @@ function runTests()
       echo "${1}: Success!"
     fi
   elif [ "$DF_CHECK_COVERAGE" = "1" ]; then
-    mpirun --oversubscribe -np 4 coverage run --parallel-mode --append runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
+    mpirun --oversubscribe -np 4 coverage run runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
     if [ "${PIPESTATUS[0]}" -ne "0" ]; then 
       echo "${1}: Failed!"
       exit 1
     fi
     echo "DF_CHECK_COVERAGE key found! Do NOT check the regression test values!"
+    echo "parallel"
     ls -la 
   else
     echo "DF_CHECK_COVERAGE key not valid! Set it to 1!"
@@ -75,12 +76,13 @@ function runTestsSerial()
       echo "${1}: Success!"
     fi
   elif [ "$DF_CHECK_COVERAGE" = "1" ]; then
-    coverage run --append runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
+    coverage run runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
     if [ "${PIPESTATUS[0]}" -ne "0" ]; then 
       echo "${1}: Failed!"
       exit 1
     fi
     echo "DF_CHECK_COVERAGE key found! Do NOT check the regression test values!"
+    echo "serial"
     ls -la 
   else
     echo "DF_CHECK_COVERAGE key not valid! Set it to 1!"
