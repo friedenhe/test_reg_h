@@ -227,7 +227,7 @@ case $argm in
     echo "Running Mphys tests...."
     sleep 3
     if [ -f "$DAFOAM_ROOT_PATH/OpenFOAM/sharedLibs/libDAFoamIncompressibleADR.so" ]; then
-      runTest DASimpleFoamAD
+      runTests DASimpleFoamAD
       runTestsSerial MphysAeroFixedPoint
     fi
     echo " "
