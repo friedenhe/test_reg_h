@@ -41,7 +41,7 @@ function runTests()
       echo "${1}: Success!"
     fi
   elif [ "$DF_CHECK_COVERAGE" = "1" ]; then
-    mpirun --oversubscribe -np 4 coverage run --parallel-mode runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
+    mpirun --oversubscribe -np 4 coverage run --parallel-mode --append runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
     if [ "${PIPESTATUS[0]}" -ne "0" ]; then 
       echo "${1}: Failed!"
       exit 1
@@ -75,7 +75,7 @@ function runTestsSerial()
       echo "${1}: Success!"
     fi
   elif [ "$DF_CHECK_COVERAGE" = "1" ]; then
-    coverage run runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
+    coverage run --append runTests_${1}.py $@ | tee DAFoam_Test_${1}.txt 
     if [ "${PIPESTATUS[0]}" -ne "0" ]; then 
       echo "${1}: Failed!"
       exit 1
