@@ -47,7 +47,6 @@ function runTests()
       exit 1
     fi
     echo "DF_CHECK_COVERAGE key found! Do NOT check the regression test values!"
-    ls -la
   else
     echo "DF_CHECK_COVERAGE key not valid! Set it to 1!"
     exit 1
@@ -81,7 +80,6 @@ function runTestsSerial()
       exit 1
     fi
     echo "DF_CHECK_COVERAGE key found! Do NOT check the regression test values!"
-    ls -la
   else
     echo "DF_CHECK_COVERAGE key not valid! Set it to 1!"
     exit 1
@@ -227,11 +225,11 @@ case $argm in
     if [ -f "$DAFOAM_ROOT_PATH/OpenFOAM/sharedLibs/libDAFoamIncompressibleADR.so" ]; then
       runTests MphysAero
       runTestsSerial MphysAeroFixedPoint
-      #runTests MphysAeroOpt
-      #runTests MphysAeroField
+      runTests MphysAeroOpt
+      runTests MphysAeroField
     fi
     if [ -f "$DAFOAM_ROOT_PATH/OpenFOAM/sharedLibs/libDAFoamCompressibleADR.so" ]; then
-      #runTests MphysAeroStructOpt
+      runTests MphysAeroStructOpt
     fi
     echo " "
     echo "************************************************************"
