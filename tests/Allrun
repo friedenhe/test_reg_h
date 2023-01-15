@@ -230,9 +230,9 @@ case $argm in
       #runTests MphysAeroOpt
       #runTests MphysAeroField
     fi
-    if [ -f "$DAFOAM_ROOT_PATH/OpenFOAM/sharedLibs/libDAFoamCompressibleADR.so" ]; then
+    #if [ -f "$DAFOAM_ROOT_PATH/OpenFOAM/sharedLibs/libDAFoamCompressibleADR.so" ]; then
       #runTests MphysAeroStructOpt
-    fi
+    #fi
     echo " "
     echo "************************************************************"
     echo "******************* Mphys tests passed! ********************"
